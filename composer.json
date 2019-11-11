@@ -13,6 +13,7 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravel/ui": "^1.1",
+        "nesbot/carbon": "^2.26",
         "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {

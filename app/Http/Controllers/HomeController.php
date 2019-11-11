@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\UserActivities;
 use App\UserStatistics;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -38,10 +39,23 @@ class HomeController extends Controller
     {
         $user = User::getModel()->getUserIdByEmail($request->session()->get('email'));
 
-      //  $userStatistics = UserStatistics::getModel()->loadUserStatisticsByUserId($user->id);
-        $currentTime = date('H:i:s');
+        $currentTime = Carbon::now();
+        $userActivities = UserActivities::getModel()->loadUserActivitiesByUserId($user->id);
+
+        if ($userActivities !== null) {
+            if ($currentTime->toDateString() <= $userActivities->created_at->toDateString()) {
+                $alreadyFillDailyActivities = true;
+            } else {
+                $alreadyFillDailyActivities = false;
+            }
+        } else {
+            $alreadyFillDailyActivities = false;
+        }
+        
 
         return view('profile', [
+            'already_fill_daily_activities' => $alreadyFillDailyActivities,
+            'userAct' => $userActivities,
             'email' => $request->session()->get('email'),
             'current_time' => $currentTime
         ]);

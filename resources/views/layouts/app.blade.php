@@ -15,15 +15,18 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body background="{{ URL::to('/') }}/41808_2.jpg">
+<body background="{{ URL::to('/') }}/tes.png">
+    
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: rgba(255,255,255, 0.4)">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: rgba(255,255,255)">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+
+                <a class="navbar-brand" href="{{ url('/profile') }}">
                     {{ config('app.name', 'Your Health Care') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -69,11 +72,14 @@
                         @endguest
                     </ul>
                 </div>
+
             </div>
         </nav>
 
+
         <main class="py-4">
             @yield('content')
+
         </main>
     </div>
 </body>

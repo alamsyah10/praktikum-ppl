@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function(){
 	Route::get('/dashboard', 'HomeController@show');
 	Route::get('/profile', 'HomeController@profile');
-	Route::post('/profile', 'HomeController@generate');
+	Route::post('/profile', 'UserController@storeActivities');
 });
 
 
